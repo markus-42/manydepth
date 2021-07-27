@@ -123,14 +123,20 @@ def test_simple(args):
     
     # inference time params
     inf_time_sum = 0
-    inf_time_warmup_iter = 2
-    inf_time_calc_iter = 2
+    inf_time_warmup_iter = 50
+    inf_time_calc_iter = 50
 
     for i in range(inf_time_warmup_iter + inf_time_calc_iter):
+
+        # info log
+        if i == 0:
+            print('starting warmup')
+        elif i == inf_time_warmup_iter:
+            print('starting to average inference time')
         print('iteration',i)
         
+        # start inference time measurement
         if i >= inf_time_warmup_iter:
-            # start inference time measurement
             inf_time_start = time.time()
         
 
@@ -178,7 +184,7 @@ def test_simple(args):
         # calculate inference time
         if i >= inf_time_warmup_iter:
             inf_time_end = time.time()
-            inf_time = (inf_time_end - inf_time_start) / 1000 # time in ms
+            inf_time = (inf_time_end - inf_time_start) * 1000 # time in ms
             inf_time_sum += inf_time
     
     # average inference time
