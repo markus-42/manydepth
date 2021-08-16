@@ -19,6 +19,8 @@ manydepth/depth_estimation.ipynb
 ### average_inference_time.py
 This python script calculates and averages the inference time on any given device. The measurement first undergoes a warmup phase of 50 iterations, to initialize the model and to simulate real circumstances. Afterwards, the inference time is averaged over 50 iterations.
 
+Average Inference Time on Nvidia Jetson Xavier NX: **200ms**
+
 To calculate the the average inference time, execute
 ```
 python -m manydepth.average_inference_time.py \
