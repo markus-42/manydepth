@@ -1,3 +1,37 @@
+# ManyDepth
+This repository is an edited version of the [original ManyDepth repository](https://github.com/nianticlabs/manydepth).
+See below for the original README content.
+
+[[Link to paper]](https://arxiv.org/abs/2104.14540)
+
+### Setup
+1. Install necessary python packages. <br> Note: Find packages by running one of the subsequent python files.
+2. Download pretrained weights [here](https://storage.googleapis.com/niantic-lon-static/research/manydepth/models/CityScapes_MR.zip), unzip the file and place the folder under `models\`. <br> Note: This downloads the pretrained weights of the CityScapes dataset. This dataset contains images of urban landscapes, which is advantageous for the WARGdrones scenario. If necessary, see below for pretrained weights of KITTI dataset.
+
+There are **two new files** added to the original repository:
+
+### depth_estimation.ipynb
+This Jupyter Notebook helps to understand the ManyDepth inference prodecure and can be used to develop further functionalities ontop of the estimated depth map(s):
+```
+manydepth/depth_estimation.ipynb
+```
+
+### average_inference_time.py
+This python script calculates and averages the inference time on any given device. The measurement first undergoes a warmup phase of 50 iterations, to initialize the model and to simulate real circumstances. Afterwards, the inference time is averaged over 50 iterations.
+
+To calculate the the average inference time, execute
+```
+python -m manydepth.average_inference_time.py \
+    --target_image_path assets/test_sequence_target.jpg \
+    --source_image_path assets/test_sequence_source.jpg \
+    --intrinsics_json_path assets/test_sequence_intrinsics.json \
+    --model_path models/CityScapes_MR
+```
+
+
+
+---
+Original ManyDepth README content:
 # The Temporal Opportunist: Self-Supervised Multi-Frame Monocular Depth
 
 [Jamie Watson](https://scholar.google.com/citations?user=5pC7fw8AAAAJ&hl=en),
